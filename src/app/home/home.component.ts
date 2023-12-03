@@ -22,16 +22,20 @@ export class HomeComponent implements OnInit {
   //Set gpa total to 0
   gpaTotal: number = 0;
 
+  //Create a transcript form variable of type form group
   transcriptForm: FormGroup;
 
+  //Declare a blank constructor with the form builder passed in
   constructor(private fb: FormBuilder) {
 
-   }
+  }
 
+  //On init, call the form builder variable and set up its validators
   ngOnInit(): void {
     this.transcriptForm = this.fb.group({ course: ['', Validators.required ], grade: ['', Validators.required]});
   }
 
+  //Call get and return the form controls
   get form(){return this.transcriptForm.controls}
 
   //Create a function for storing transcript entries
@@ -40,7 +44,7 @@ export class HomeComponent implements OnInit {
       course: this.form.course.value,
       grade: this.form.grade.value
     });
-
+    //Reset the form upon submit
     event.currentTarget.reset();
   }
 
